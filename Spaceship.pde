@@ -20,6 +20,7 @@ class Spaceship extends Floater
     yCorners=yS;
     myCenterX=myCenterY=250;
     myDirectionX=myDirectionY=0;
+    myPointDirection=0;
   }  
   //your code here
 }

@@ -1,4 +1,5 @@
 Star[] light= new Star[200];//your variable declarations here
+ArrayList <Asteroid> rock=new ArrayList<Asteroid>();
 Spaceship metal= new Spaceship();
 public void setup() 
 {
@@ -7,6 +8,10 @@ public void setup()
   {
     light[i] = new Star();
   }//your code here
+    for (int i=0; i<20;i++)
+    {
+      rock.add(new Asteroid());
+    }
 }
 public void draw() 
 {
@@ -14,6 +19,11 @@ public void draw()
     for (int i=0; i<light.length;i++)
   {
     light[i].show();
+  }
+    for (int i=0; i<rock.size();i++)
+  {
+    rock.get(i).show();
+    rock.get(i).move();
   }
   metal.show();
   metal.move();
@@ -23,23 +33,23 @@ public void keyPressed()
 {
   if(key=='a')
   {
-    metal.turn(-6);
+    metal.turn(-10);
   }
    if(key=='w')
   {
-    metal.accelerate(.3);
+    metal.accelerate(.15);
   }
   if(key=='s')
   {
-    metal.accelerate(-.3);
+    metal.accelerate(-.15);
   }
   if(key=='d')
   {
-    metal.turn(6);
+    metal.turn(10);
   }
   if(key=='e')
   {
-    metal.setX((int)(Math.random()*500)-250);
-    metal.setY((int)(Math.random()*500)-250);
+    metal.setX((int)(Math.random()*500));
+    metal.setY((int)(Math.random()*500));
   }
 }
