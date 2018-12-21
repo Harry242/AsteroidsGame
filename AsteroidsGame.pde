@@ -1,5 +1,6 @@
 Star[] light= new Star[200];//your variable declarations here
 ArrayList <Asteroid> rock=new ArrayList<Asteroid>();
+ArrayList<Bullet> pew=new ArrayList <Bullet>();
 Spaceship metal= new Spaceship();
 public void setup() 
 {
@@ -27,8 +28,31 @@ public void draw()
   }
   metal.show();
   metal.move();
-  //your code here
-}
+  for(int i = 0; i < rock.size(); i++)
+
+  {
+    if(dist(metal.getX(),metal.getY(),rock.get(i).getX(),rock.get(i).getY())<10)
+    rock.remove(i);
+  }
+
+  for(int i = 0; i < rock.size(); i++)
+  {
+    for(int ii = 0; ii < pew.size(); ii++)
+    {
+      if(dist(rock.get(i).getX(),rock.get(i).getY(),pew.get(ii).getX(),pew.get(ii).getY())<10)
+      {
+        pew.remove(ii);
+        rock.remove(i);
+        break;
+      }
+    }
+  }
+  for(int i = 0; i < pew.size(); i++)
+  {
+    pew.get(i).show();
+    pew.get(i).move();
+  }
+}//your code here
 public void keyPressed()
 {
   if(key=='a')
@@ -51,5 +75,9 @@ public void keyPressed()
   {
     metal.setX((int)(Math.random()*500));
     metal.setY((int)(Math.random()*500));
+  }
+  if(key == ' ') // bullet
+  {
+    pew.add(new Bullet(metal));
   }
 }
